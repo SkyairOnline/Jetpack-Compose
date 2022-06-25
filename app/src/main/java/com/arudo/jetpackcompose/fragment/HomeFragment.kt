@@ -2,21 +2,30 @@ package com.arudo.jetpackcompose.fragment
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.arudo.jetpackcompose.fragment.screen.HomeScreen
 import com.arudo.jetpackcompose.ui.theme.JetpackComposeTheme
 
 @Composable
-fun HomeFragment() {
+fun HomeFragment(
+    modifier: Modifier = Modifier
+) {
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
-        HomeScreen(name = "Android")
+        HomeScreen(
+            modifier = Modifier
+                .padding(
+                    horizontal = 16.dp
+                )
+        )
     }
 }
 
