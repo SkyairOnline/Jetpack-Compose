@@ -8,7 +8,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.arudo.jetpackcompose.fragment.detail.screen.DetailScreen
 import com.arudo.jetpackcompose.ui.component.ErrorButton
 import com.arudo.jetpackcompose.ui.component.LoadingCircular
@@ -19,7 +19,7 @@ import com.arudo.jetpackcompose.viewmodel.DetailViewModel
 @Composable
 fun DetailFragment(
     modifier: Modifier = Modifier,
-    detailViewModel: DetailViewModel = viewModel(),
+    detailViewModel: DetailViewModel = hiltViewModel(),
     id: Int? = null,
 ) {
     if(id == null) return

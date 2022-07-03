@@ -16,7 +16,9 @@ import com.arudo.jetpackcompose.fragment.home.HomeFragment
 import com.arudo.jetpackcompose.ui.theme.JetpackComposeTheme
 import com.arudo.jetpackcompose.utils.Const.DETAIL_ARG_GAMES_ID
 import com.arudo.jetpackcompose.utils.Route
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
