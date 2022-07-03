@@ -11,6 +11,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.arudo.jetpackcompose.R
 import com.arudo.jetpackcompose.ui.theme.JetpackComposeTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -21,22 +22,25 @@ import com.google.accompanist.pager.rememberPagerState
 @Composable
 fun ProductImageCarousel(
     modifier: Modifier = Modifier,
+    listImage: List<String> = listOf()
 ) {
     val state = rememberPagerState()
     HorizontalPager(
         state = state,
-        count = 6,
+        count = listImage.size,
         modifier = modifier
-    ) {
+    ) { pagerScope ->
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            val imagePainter = rememberAsyncImagePainter(
+                model = listImage[pagerScope],
+                error = painterResource(id = R.drawable.ic_launcher_foreground),
+            )
             Box(contentAlignment = Alignment.BottomCenter) {
                 Image(
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
-                    contentDescription = "",
                     modifier = Modifier
                         .padding(
                             start = 8.dp,
@@ -44,7 +48,9 @@ fun ProductImageCarousel(
                         )
                         .clip(RoundedCornerShape(10.dp))
                         .fillMaxSize(),
-                    contentScale = ContentScale.Crop
+                    painter = imagePainter,
+                    contentDescription = listImage[pagerScope],
+                    contentScale = ContentScale.Crop,
                 )
             }
         }

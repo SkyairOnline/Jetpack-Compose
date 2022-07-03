@@ -9,36 +9,54 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.arudo.jetpackcompose.R
+import androidx.core.text.HtmlCompat
+import com.arudo.jetpackcompose.domain.model.Games
 import com.arudo.jetpackcompose.ui.component.ProductHeader
 import com.arudo.jetpackcompose.ui.component.ProductImageCarousel
 import com.arudo.jetpackcompose.ui.theme.JetpackComposeTheme
 
 @Composable
 fun DetailScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    games: Games? = null
 ) {
+    if(games == null) return
     val scrollState = rememberScrollState()
+    val name = games.name ?: ""
+    val imageUrl = games.backgroundImage ?: ""
+    val releaseDate = games.released ?: ""
+    val listImageCarousel = mutableListOf<String>()
+    games.backgroundImage?.let {
+        listImageCarousel.add(it)
+    }
+    games.backgroundImageAdditional?.let {
+        listImageCarousel.add(it)
+    }
     Column(
         modifier = modifier
             .fillMaxWidth()
             .verticalScroll(scrollState)
     ) {
         ProductHeader(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
+            imageUrl = imageUrl,
+            name = name,
+            releaseDate = releaseDate,
         )
         ProductImageCarousel(
             modifier = Modifier
                 .height(200.dp)
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            listImage = listImageCarousel
         )
         Text(
-            text = stringResource(id = R.string.product_description_placeholder),
+            text = HtmlCompat
+                .fromHtml(games.description ?: "", HtmlCompat.FROM_HTML_MODE_COMPACT)
+                .toString(),
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(
