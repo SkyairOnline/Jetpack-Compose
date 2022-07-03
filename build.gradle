@@ -1,13 +1,18 @@
 buildscript {
     ext {
+        gradle_version = '7.2.0'
+        kotlin_version = '1.6.21'
         compose_version = '1.2.0-rc02'
         constraintlayout_version = '1.0.1'
         core_version = '1.8.0'
-        lifecycle_version = '2.4.1'
-        activity_version = '1.4.0'
+        lifecycle_version = '2.5.0-rc02'
+        activity_version = '1.5.0-rc01'
         coil_version = '2.1.0'
         google_accompanist_version = '0.22.0-rc'
         navigation_version = '2.5.0-rc02'
+        squareup_retrofit2_version = '2.9.0'
+        squareup_okhttp3_version = '4.9.3'
+        paging_version = '1.0.0-alpha15'
 
         junit_version = '4.13.2'
 
@@ -16,9 +21,9 @@ buildscript {
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    id 'com.android.application' version '7.2.0' apply false
-    id 'com.android.library' version '7.2.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.6.21' apply false
+    id 'com.android.application' version "${gradle_version}" apply false
+    id 'com.android.library' version "${gradle_version}" apply false
+    id 'org.jetbrains.kotlin.android' version "${kotlin_version}" apply false
 }
 
 task clean(type: Delete) {
