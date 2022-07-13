@@ -30,29 +30,23 @@ fun ProductImageCarousel(
         count = listImage.size,
         modifier = modifier
     ) { pagerScope ->
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            val imagePainter = rememberAsyncImagePainter(
-                model = listImage[pagerScope],
-                error = painterResource(id = R.drawable.ic_launcher_foreground),
+        val imagePainter = rememberAsyncImagePainter(
+            model = listImage[pagerScope],
+            error = painterResource(id = R.drawable.ic_launcher_foreground),
+        )
+        Box(contentAlignment = Alignment.BottomCenter) {
+            Image(
+                modifier = Modifier
+                    .padding(
+                        start = 8.dp,
+                        end = 8.dp
+                    )
+                    .clip(RoundedCornerShape(10.dp))
+                    .fillMaxSize(),
+                painter = imagePainter,
+                contentDescription = listImage[pagerScope],
+                contentScale = ContentScale.Crop,
             )
-            Box(contentAlignment = Alignment.BottomCenter) {
-                Image(
-                    modifier = Modifier
-                        .padding(
-                            start = 8.dp,
-                            end = 8.dp
-                        )
-                        .clip(RoundedCornerShape(10.dp))
-                        .fillMaxSize(),
-                    painter = imagePainter,
-                    contentDescription = listImage[pagerScope],
-                    contentScale = ContentScale.Crop,
-                )
-            }
         }
     }
 }
