@@ -43,7 +43,7 @@ fun HomeScreen(
                     name = name,
                     imageUrl = imageUrl,
                     releaseDate = releaseDate,
-                    onClickCard = {
+                    onClickProduct = {
                         id?.let {
                             onClickToDetailScreen.invoke(id)
                         }

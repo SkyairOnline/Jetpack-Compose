@@ -30,14 +30,14 @@ fun ProductCard(
     name: String = "",
     imageUrl: String = "",
     releaseDate: String = "",
-    onClickCard: () -> Unit = {},
+    onClickProduct: () -> Unit = {},
 ) {
     val imagePainter = rememberAsyncImagePainter(
         model = imageUrl,
         error = painterResource(id = R.drawable.ic_launcher_foreground),
     )
     Card(
-        onClick = onClickCard,
+        onClick = onClickProduct,
     ) {
         Column(
             modifier = modifier,
