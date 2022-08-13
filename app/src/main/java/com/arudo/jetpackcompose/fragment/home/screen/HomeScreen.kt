@@ -8,10 +8,12 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import com.arudo.jetpackcompose.R
 import com.arudo.jetpackcompose.domain.model.Games
 import com.arudo.jetpackcompose.ui.component.ErrorButton
 import com.arudo.jetpackcompose.ui.component.LoadingCircular
@@ -52,47 +54,19 @@ fun HomeScreen(
             }
         }
         gamesList.apply {
-            when {
-                loadState.refresh is LoadState.Loading -> {
-                    item(
-                        span = { GridItemSpan(maxLineSpan) }
-                    ) {
+            item(
+                span = { GridItemSpan(maxLineSpan) }
+            ) {
+                when {
+                    loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading -> {
                         LoadingCircular(
                             modifier = Modifier.fillMaxWidth(),
                         )
                     }
-                }
-                loadState.refresh is LoadState.Error -> {
-                    val e = gamesList.loadState.refresh as LoadState.Error
-                    item(
-                        span = { GridItemSpan(maxLineSpan) }
-                    ) {
+                    loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
                         ErrorButton(
                             modifier = Modifier.fillMaxWidth(),
-                            text = e.error.localizedMessage ?: "",
-                            onClick = {
-                                retry()
-                            }
-                        )
-                    }
-                }
-                loadState.append is LoadState.Loading -> {
-                    item(
-                        span = { GridItemSpan(maxLineSpan) }
-                    ) {
-                        LoadingCircular(
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-                    }
-                }
-                loadState.append is LoadState.Error -> {
-                    val e = gamesList.loadState.append as LoadState.Error
-                    item(
-                        span = { GridItemSpan(maxLineSpan) }
-                    ) {
-                        ErrorButton(
-                            modifier = Modifier.fillMaxWidth(),
-                            text = e.error.localizedMessage ?: "",
+                            text = stringResource(id = R.string.error_message),
                             onClick = {
                                 retry()
                             }

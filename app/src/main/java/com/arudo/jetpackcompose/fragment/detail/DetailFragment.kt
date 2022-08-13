@@ -7,8 +7,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.arudo.jetpackcompose.R
 import com.arudo.jetpackcompose.fragment.detail.screen.DetailScreen
 import com.arudo.jetpackcompose.ui.component.ErrorButton
 import com.arudo.jetpackcompose.ui.component.LoadingCircular
@@ -47,7 +49,7 @@ fun DetailFragment(
             is Response.Failure -> {
                 ErrorButton(
                     modifier = Modifier.fillMaxWidth(),
-                    text = gamesResponse.e?.localizedMessage ?: "",
+                    text = stringResource(id = R.string.error_message),
                     onClick = {
                         launch()
                     }
