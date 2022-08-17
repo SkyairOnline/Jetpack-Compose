@@ -29,6 +29,9 @@ fun DetailScreen(
     val name = games.name ?: ""
     val imageUrl = games.backgroundImage ?: ""
     val releaseDate = games.released ?: ""
+    val description = HtmlCompat
+        .fromHtml(games.description ?: "", HtmlCompat.FROM_HTML_MODE_COMPACT)
+        .toString()
     val listImageCarousel = mutableListOf<String>()
     games.backgroundImage?.let {
         listImageCarousel.add(it)
@@ -54,9 +57,7 @@ fun DetailScreen(
             listImage = listImageCarousel
         )
         Text(
-            text = HtmlCompat
-                .fromHtml(games.description ?: "", HtmlCompat.FROM_HTML_MODE_COMPACT)
-                .toString(),
+            text = description,
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(

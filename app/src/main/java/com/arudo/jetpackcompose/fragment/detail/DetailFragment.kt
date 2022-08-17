@@ -22,10 +22,8 @@ import com.arudo.jetpackcompose.viewmodel.DetailViewModel
 fun DetailFragment(
     modifier: Modifier = Modifier,
     detailViewModel: DetailViewModel = hiltViewModel(),
-    id: Int? = null,
+    id: Int = -1,
 ) {
-    if(id == null) return
-
     fun launch() {
         detailViewModel.getDetailGames(id)
     }

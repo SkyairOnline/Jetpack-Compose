@@ -47,7 +47,7 @@ fun HomeScreen(
                     releaseDate = releaseDate,
                     onClickProduct = {
                         id?.let {
-                            onClickToDetailScreen.invoke(id)
+                            onClickToDetailScreen.invoke(it)
                         }
                     }
                 )

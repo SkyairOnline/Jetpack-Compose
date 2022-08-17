@@ -16,15 +16,15 @@ class GamesPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Games> {
         return try {
             val nextPage = params.key ?: 1
-            val userList = response.invoke(nextPage)
+            val gamesList = response.invoke(nextPage)
             LoadResult.Page(
-                data = userList.results,
+                data = gamesList.results,
                 prevKey = if (nextPage == 1) null else nextPage - 1,
-                nextKey = userList
+                nextKey = gamesList
                     .next
-                    .substringAfter("page=")
-                    .substringBefore("&")
-                    .toInt()
+                    ?.substringAfter("page=")
+                    ?.substringBefore("&")
+                    ?.toInt() ?: nextPage
             )
         } catch (exception: Exception) {
             return LoadResult.Error(exception)

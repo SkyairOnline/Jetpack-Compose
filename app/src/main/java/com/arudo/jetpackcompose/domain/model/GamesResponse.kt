@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class GamesResponse(
 
 	@field:SerializedName("next")
-	val next: String,
+	val next: String? = null,
 
 	@field:SerializedName("previous")
 	val previous: String? = null,
@@ -14,5 +14,5 @@ data class GamesResponse(
 	val count: Int,
 
 	@field:SerializedName("results")
-	val results: List<Games>,
+	val results: List<Games> = listOf(),
 )
